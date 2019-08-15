@@ -1,0 +1,16 @@
+<panel name="mainPanel" columns="1">
+	<menubar weightx="1">
+		<menu text="Main">
+			<menuitem name="startMenuItem" text="Connect" action="start()" />
+			<menuitem name="stopMenuItem"  text="Disconnect" enabled="false" action="stop()"  />
+			<separator />
+			<menuitem text="Exit"  action="exit()"  />
+		</menu>
+	</menubar>
+
+	<panel top="4" left="4" bottom="4" right="4" gap="4" columns="1" weightx="1" weighty="1">
+		<tabbedpane weightx="1" weighty="1" placement="top">
+			<tab name="viewTab"  text="View"  />
+		</tabbedpane>
+	</panel>
+</panel>
