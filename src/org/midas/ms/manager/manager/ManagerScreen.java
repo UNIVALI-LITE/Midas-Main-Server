@@ -25,10 +25,10 @@ import thinlet.Thinlet;
 
 public class ManagerScreen
 {
-	// Variáveis de Estado
+	// Variï¿½veis de Estado
 	private static boolean hidden = true;
 	
-	// Variáveis do Thinlet
+	// Variï¿½veis do Thinlet
 	private static Object  mainScreen;
 	private static Object  viewScreen;
 	
@@ -37,7 +37,7 @@ public class ManagerScreen
 	private static FrameLauncher frame;
 	private static Thinlet 		 thinlet;
 				
-	// Ícones
+	// ï¿½cones
 	private static Image agentIcon;
 	private static Image folderIcon;
 	private static Image serviceIcon;
@@ -49,7 +49,7 @@ public class ManagerScreen
 		
 	public static void show()
 	{
-		// 1. Montando Tela de Visualização
+		// 1. Montando Tela de Visualizaï¿½ï¿½o
 		thinlet = new Thinlet();
 				
 		try 
@@ -72,7 +72,7 @@ public class ManagerScreen
 			// 5. Sincronizando com estado do AS
 			if (Manager.isConnected())
 			{
-				// Verifica se os ícones já foram carregados
+				// Verifica se os ï¿½cones jï¿½ foram carregados
 				if (organizationIcon == null)
 				{
 					agentIcon = tk.getImage(new File("").getAbsolutePath()+"/images/agentIcon.gif");
@@ -119,7 +119,7 @@ public class ManagerScreen
 			}
 			else if (event.equals("Connected"))
 			{
-				// Verifica se os ícones já foram carregados
+				// Verifica se os ï¿½cones jï¿½ foram carregados
 				if (organizationIcon == null)
 				{
 					agentIcon = tk.getImage(new File("").getAbsolutePath()+"/images/agentIcon.gif");
@@ -198,15 +198,15 @@ public class ManagerScreen
 		}
 		else
 		{
-			// Variáveis Thinlet 
+			// Variï¿½veis Thinlet 
 			Object thinletDetails      = thinlet.find(viewScreen,"detailsTextArea");
 			Object thinletServicesTree = thinlet.find(viewScreen,"servicesTree");
 			
-			// Variáveis de Informação
+			// Variï¿½veis de Informaï¿½ï¿½o
 			String            info="";
 			ContainerInfo     container;			
 						
-			// Obtendo Strings com as Informações da Seleção			
+			// Obtendo Strings com as Informaï¿½ï¿½es da Seleï¿½ï¿½o			
 			String[] selection = null;
 			
 			try
@@ -215,7 +215,7 @@ public class ManagerScreen
 			}
 			catch(IllegalArgumentException e){}
 			
-			// Limpando a Área de Texto
+			// Limpando a ï¿½rea de Texto
 			thinlet.removeAll(thinletDetails);
 			
 			// Preenchendo o Painel			
@@ -273,12 +273,12 @@ public class ManagerScreen
 		}
 		else
 		{			
-			// Variáveis Thinlet
+			// Variï¿½veis Thinlet
 			Object thinletContainerList = thinlet.find(viewScreen,"containerList");
 			Object thinletStyleSelection = thinlet.find(viewScreen,"viewCheckBox");
 			Object thinletServicesTree = thinlet.find(viewScreen,"servicesTree");			
 			
-			// Variáveis Thinlet Auxiliares
+			// Variï¿½veis Thinlet Auxiliares
 			Object thinletItem;
 			Object thinletOrgNode;
 			Object thinletEnttNode;
@@ -287,17 +287,17 @@ public class ManagerScreen
 			Object thinletContainerNode;
 			Object thinletComponentsNode;			
 			
-			// Variáveis de Informação
+			// Variï¿½veis de Informaï¿½ï¿½o
 			Set<ServiceInfo> services;
 			Set<EntityInfo> entities;
 			Set<ContainerInfo> containers;
 			Set<OrganizationInfo> organizations;
 									
-			// Limpando as Árvores e Listas
+			// Limpando as ï¿½rvores e Listas
 			thinlet.removeAll(thinletContainerList);
 			thinlet.removeAll(thinletServicesTree);
 			
-			// Preenchendo Árvore de Serviços
+			// Preenchendo ï¿½rvore de Serviï¿½os
 			if ((thinlet.getBoolean(thinletStyleSelection,"selected")))
 			{
 				// Varrendo Containers
@@ -310,36 +310,36 @@ public class ManagerScreen
 					thinlet.setIcon(thinletItem,"icon",containerIcon);
 					thinlet.setString(thinletItem,"text",containerInfo.getName());
 					
-					// Adicionando Item a à Lista
+					// Adicionando Item a ï¿½ Lista
 					thinlet.add(thinletContainerList,thinletItem);
 					
-					// Criando Nó Thinlet
+					// Criando Nï¿½ Thinlet
 					thinletContainerNode = Thinlet.create("node");
 					thinlet.setIcon(thinletContainerNode,"icon",containerIcon);
 					thinlet.setString(thinletContainerNode,"text",containerInfo.getName());
 					thinlet.setString(thinletContainerNode,"name","container-"+containerInfo.getName());
 					
-					// Adicionando Nó à Árvore
+					// Adicionando Nï¿½ ï¿½ ï¿½rvore
 					thinlet.add(thinletServicesTree,thinletContainerNode);
 					
 
 					
 					
-					// Varrendo Organizações
+					// Varrendo Organizaï¿½ï¿½es
 					organizations = containerInfo.getOrganizations();
 						
 					for (OrganizationInfo orgInfo : organizations)
 					{
-						// Criando Nó Thinlet
+						// Criando Nï¿½ Thinlet
 						thinletOrgNode = Thinlet.create("node");
 						thinlet.setIcon(thinletOrgNode,"icon",organizationIcon);
 						thinlet.setString(thinletOrgNode,"text",orgInfo.getName());
 						thinlet.setString(thinletOrgNode,"name","organization-"+containerInfo.getName()+"-"+orgInfo.getName());
 						
-						// Adicionando Nó ao Container
+						// Adicionando Nï¿½ ao Container
 						thinlet.add(thinletContainerNode,thinletOrgNode);				
 						
-						// Criando Nós Separadores de Agentes/Componentes
+						// Criando Nï¿½s Separadores de Agentes/Componentes
 						thinletAgentsNode = Thinlet.create("node");
 						thinlet.setString(thinletAgentsNode,"text","/Agents");
 						thinlet.setString(thinletAgentsNode,"name","folder-"+"agents");
@@ -349,7 +349,7 @@ public class ManagerScreen
 						thinlet.setString(thinletComponentsNode,"name","folder-"+"components");
 						thinlet.setIcon(thinletComponentsNode,"icon",folderIcon);
 						
-						// Adicionando Nós Separadores à Organização
+						// Adicionando Nï¿½s Separadores ï¿½ Organizaï¿½ï¿½o
 						thinlet.add(thinletOrgNode,thinletAgentsNode);
 						thinlet.add(thinletOrgNode,thinletComponentsNode);
 						
@@ -358,12 +358,12 @@ public class ManagerScreen
 							
 						for (EntityInfo enttInfo : entities)
 						{								
-							// Criando Nó Thinlet
+							// Criando Nï¿½ Thinlet
 							thinletEnttNode = Thinlet.create("node");
 							thinlet.setString(thinletEnttNode,"text",enttInfo.getName());
 							thinlet.setString(thinletEnttNode,"name","entity-"+containerInfo.getName()+"-"+orgInfo.getName()+"-"+enttInfo.getName());
 								
-							// Adicionando Nó ao Nó Pai
+							// Adicionando Nï¿½ ao Nï¿½ Pai
 							if ((enttInfo.getType()).equals("agent"))
 							{
 								thinlet.setIcon(thinletEnttNode,"icon",agentIcon);
@@ -375,18 +375,18 @@ public class ManagerScreen
 								thinlet.add(thinletComponentsNode,thinletEnttNode);
 							}
 													
-							// Varrendo Serviços
+							// Varrendo Serviï¿½os
 							services = enttInfo.getServices();
 								
 							for (ServiceInfo servInfo : services)
 							{								
-								// Criando Nó Thinlet
+								// Criando Nï¿½ Thinlet
 								thinletServNode = Thinlet.create("node");							
 								thinlet.setIcon(thinletServNode,"icon",serviceIcon);
 								thinlet.setString(thinletServNode,"text",servInfo.getName());
 								thinlet.setString(thinletServNode,"name","service-"+containerInfo.getName()+"-"+orgInfo.getName()+"-"+enttInfo.getName()+"-"+servInfo.getName());
 									
-								// Adicionando Nó ao Nó Pai
+								// Adicionando Nï¿½ ao Nï¿½ Pai
 								thinlet.add(thinletEnttNode,thinletServNode);	
 							}
 						}						
@@ -395,13 +395,13 @@ public class ManagerScreen
 			}
 			else
 			{
-				/* Varrendo Serviços
+				/* Varrendo Serviï¿½os
 				Collection servs = Catalog.getServices().values();
 				services = new TreeSet<>(servs);
 				
 				for (ServiceInfo servInfo : services)
 				{					
-					// Criando Nó Thinlet
+					// Criando Nï¿½ Thinlet
 					thinletServNode = Thinlet.create("node");
 					
 					StringBuilder thinletText = new StringBuilder();
@@ -433,7 +433,7 @@ public class ManagerScreen
 		}
 		else if (!Manager.isConnected())
 		{
-			// Variáveis Thinlet
+			// Variï¿½veis Thinlet
 			Object thinletThreadField = thinlet.find(viewScreen,"threadCount");
 			Object thinletMemoryField = thinlet.find(viewScreen,"memoryUsage");
 			
@@ -443,11 +443,11 @@ public class ManagerScreen
 		}
 		else
 		{			
-			// Variáveis Thinlet
+			// Variï¿½veis Thinlet
 			Object thinletThreadField = thinlet.find(viewScreen,"threadCount");
 			Object thinletMemoryField = thinlet.find(viewScreen,"memoryUsage");
 			
-			// Obtendo Informações
+			// Obtendo Informaï¿½ï¿½es
 			Long memoryUsage = Runtime.getRuntime().totalMemory();
 								
 			// Populando a Tela
@@ -456,7 +456,7 @@ public class ManagerScreen
 		}
 	}
 	
-	private static void refreshConnection()
+	public static void refreshConnection()
 	{
 		if (hidden)
 		{

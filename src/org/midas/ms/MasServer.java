@@ -12,7 +12,8 @@ public class MasServer
 	
 	public static void loadManager() 
 	{
-		ManagerScreen.show();		
+		ManagerScreen.show();
+		MasServer.initialize();
 	}
 	
 	public static void main(String[] args)
