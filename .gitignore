@@ -1,0 +1,10 @@
+.metadata
+.project
+.classpath
+.springBeans
+.factorypath
+*.launch
+.settings/
+/bin/
+/target/
+CVS/
