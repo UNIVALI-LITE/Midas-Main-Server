@@ -1,0 +1,7 @@
+Versão 1.2.0 (04/09/2019)
+=========================
+- Correção de caracteres inválidos em UTF-8
+- Remoção da interface gráfica desktop
+- Melhorias no Logging
+- Substituição do Container Web Tomcat pelo Jetty Embarcado
+- Mavenização do Projeto
