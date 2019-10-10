@@ -35,7 +35,7 @@ public class NativeComponentInfo extends ComponentInfo
 	{
 		String aux="";
 		
-		aux+= ("• Component: "+getName()+"\n\n");
+		aux+= ("Component: "+getName()+"\n\n");
 		aux+= ("Protocol: \n - ");
 		aux+= (getProtocol()+"\n\n");
 		aux+= ("Package: \n - ");
