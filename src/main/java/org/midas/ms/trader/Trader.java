@@ -127,7 +127,7 @@ public class Trader extends HttpServlet
 	private void provideRequest(HttpServletRequest req, HttpServletResponse res) throws IOException
 	{		
 		// Serviço
-		HashMap in;
+		Object in;
 		String  service;
 		String  organization;
 		
@@ -157,7 +157,7 @@ public class Trader extends HttpServlet
 			requirer	 = ois.readUTF();
 			organization = ois.readUTF();
 			service		 = ois.readUTF();			
-			in			 = (HashMap)ois.readObject();		
+			in			 = ois.readObject();		
 		}		
 		catch (ClassNotFoundException e)
 		{
@@ -176,7 +176,7 @@ public class Trader extends HttpServlet
 			endTime = System.currentTimeMillis();
 						
 			// Logando Resultados
-			LOG.warn("Unknown service required - Timing: "+(endTime-startTime)+"ms - Requirer: not found -  Provider: not found | "+message,false);
+			LOG.warn("Unknown service required - Timing: "+(endTime-startTime)+"ms - Requirer: not found -  Provider: not found | "+message,e);
 			
 			return;
 		}
