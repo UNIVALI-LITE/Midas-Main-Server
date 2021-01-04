@@ -87,6 +87,25 @@ public class Trader extends HttpServlet
 		{
 			verifyRequest(req,res);
 		}
+		else if (requisitionType.equals("deregister"))
+		{
+			try
+			{
+				deregisterRequest(req,res);
+			}
+			catch (CatalogException e)
+			{
+				e.printStackTrace();
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+			catch (ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+		}
 		else
 		{
 			throw new IOException("Invalid Requisition - Expected parameter 'type' with requisition type {register,verify,provide,ping}");
@@ -399,6 +418,33 @@ public class Trader extends HttpServlet
 	    }		
 	    
 	    ManagerScreen.userInterfaceEvent("Refresh Services");
+	}
+
+	private void deregisterRequest(HttpServletRequest req, HttpServletResponse res) throws IOException, ClassNotFoundException, CatalogException
+	{							
+		Object data;
+		
+		// Recuperando Entrada da Requisição
+		ObjectInputStream  in  = new ObjectInputStream(new BufferedInputStream(req.getInputStream()));
+		data = in.readObject();
+		
+		in.close();
+		
+		// Construindo Resposta da Requisição
+		res.setStatus(HttpServletResponse.SC_OK);
+	      
+		ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(res.getOutputStream()));
+	    
+		oos.writeUTF("registered");
+	    oos.flush();
+	    oos.close();
+		
+	    // Tratando Objeto Recebido
+	    // TODO: Delegar responsabilidade de notificação do ManagerScreen ao Catalog
+	    ContainerInfo containerData = (ContainerInfo)data;
+		
+		Catalog.removeContainer(containerData);
+		LOG.info("Container '"+containerData.getName()+"' has been removed from MAS");
 	}
 
 	public static boolean ping(ContainerInfo container)
