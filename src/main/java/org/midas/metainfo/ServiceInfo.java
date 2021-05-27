@@ -17,16 +17,18 @@ public class ServiceInfo implements Comparable,Serializable
 	private String path;
 	private String scope;
 	private String description;
+	private String port;
 	
 	private EntityInfo entity;
 	private Set<ParameterInfo> parameters = new TreeSet<ParameterInfo>();
 
-	public ServiceInfo(String name,String path,String scope,String description,EntityInfo entity)
+	public ServiceInfo(String name,String path,String scope,String description, String port,EntityInfo entity)
 	{
 		this.name 		 = new String(name);
 		this.path		 = new String(path);
 		this.scope		 = new String(scope);
 		this.description = new String(description);
+		this.port		 = port;
 		this.entity 	 = entity;
 	}
 	
@@ -56,6 +58,14 @@ public class ServiceInfo implements Comparable,Serializable
 	public EntityInfo getEntity()
 	{
 		return (entity);
+	}
+
+	public String getPort() {
+		return this.port;
+	}
+
+	public void setPort(String port) {
+		this.port = port;
 	}
 	
 	public Set getParameters() 
